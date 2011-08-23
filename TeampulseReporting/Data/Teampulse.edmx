@@ -1,0 +1,728 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TeamPulseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="TeamPulseModelStoreContainer">
+          <EntitySet Name="Area" EntityType="TeamPulseModel.Store.Area" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Audit" EntityType="TeamPulseModel.Store.Audit" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Iteration" EntityType="TeamPulseModel.Store.Iteration" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Problem" EntityType="TeamPulseModel.Store.Problem" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Story" EntityType="TeamPulseModel.Store.Story" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="User" EntityType="TeamPulseModel.Store.User" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Problem_Area" Association="TeamPulseModel.Store.FK_Problem_Area">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="Problem" EntitySet="Problem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Problem_Iteration" Association="TeamPulseModel.Store.FK_Problem_Iteration">
+            <End Role="Iteration" EntitySet="Iteration" />
+            <End Role="Problem" EntitySet="Problem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Problem_User" Association="TeamPulseModel.Store.FK_Problem_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Problem" EntitySet="Problem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Story_Area" Association="TeamPulseModel.Store.FK_Story_Area">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="Story" EntitySet="Story" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Story_Iteration" Association="TeamPulseModel.Store.FK_Story_Iteration">
+            <End Role="Iteration" EntitySet="Iteration" />
+            <End Role="Story" EntitySet="Story" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Story_User" Association="TeamPulseModel.Store.FK_Story_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Story" EntitySet="Story" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Area">
+          <Key>
+            <PropertyRef Name="AreaID" />
+          </Key>
+          <Property Name="AreaID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="550" />
+          <Property Name="ParentID" Type="int" Nullable="false" />
+          <Property Name="Sequence" Type="int" Nullable="false" />
+          <Property Name="SourceID" Type="varchar" MaxLength="1000" />
+          <Property Name="CreatedBy" Type="varchar" Nullable="false" MaxLength="128" />
+          <Property Name="CreatedDateUtc" Type="datetime" Nullable="false" />
+          <Property Name="CreatedSystemID" Type="int" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="varchar" Nullable="false" MaxLength="128" />
+          <Property Name="LastModifiedDateUtc" Type="datetime" Nullable="false" />
+          <Property Name="LastModifiedSystemID" Type="int" Nullable="false" />
+          <Property Name="VersionNumber" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Audit">
+          <Key>
+            <PropertyRef Name="AuditID" />
+          </Key>
+          <Property Name="AuditID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ChangeTypeID" Type="int" Nullable="false" />
+          <Property Name="TableName" Type="varchar" Nullable="false" MaxLength="128" />
+          <Property Name="ProjectID" Type="int" />
+          <Property Name="PrimaryKeyField" Type="varchar" Nullable="false" MaxLength="1000" />
+          <Property Name="PrimaryKeyValue" Type="int" Nullable="false" />
+          <Property Name="FieldName" Type="varchar" MaxLength="128" />
+          <Property Name="OldValue" Type="varchar(max)" />
+          <Property Name="NewValue" Type="varchar(max)" />
+          <Property Name="RevisionStatus" Type="int" Nullable="false" />
+          <Property Name="ModifiedBy" Type="varchar" Nullable="false" MaxLength="128" />
+          <Property Name="ModifiedDateUtc" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedSystemID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Iteration">
+          <Key>
+            <PropertyRef Name="IterationID" />
+          </Key>
+          <Property Name="IterationID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectID" Type="int" Nullable="false" />
+          <Property Name="TimeLineID" Type="int" Nullable="false" />
+          <Property Name="CapacityMinimum" Type="real" />
+          <Property Name="CapacityMaximum" Type="real" />
+          <Property Name="EndDate" Type="datetime" Nullable="false" />
+          <Property Name="PredecessorID" Type="int" />
+          <Property Name="ParentID" Type="int" Nullable="false" />
+          <Property Name="Level" Type="int" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="SourceId" Type="varchar" MaxLength="1000" />
+          <Property Name="Sequence" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" Nullable="false" MaxLength="128" />
+          <Property Name="CreatedDateUtc" Type="datetime" Nullable="false" />
+          <Property Name="CreatedSystemID" Type="int" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="varchar" Nullable="false" MaxLength="128" />
+          <Property Name="LastModifiedDateUtc" Type="datetime" Nullable="false" />
+          <Property Name="LastModifiedSystemID" Type="int" Nullable="false" />
+          <Property Name="VersionNumber" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Problem">
+          <Key>
+            <PropertyRef Name="ProblemID" />
+          </Key>
+          <Property Name="ProblemID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectID" Type="int" Nullable="false" />
+          <Property Name="ProblemType" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="AssignedTo" Type="nvarchar" MaxLength="255" />
+          <Property Name="AssignedToUserID" Type="int" />
+          <Property Name="Status" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Severity" Type="nvarchar" MaxLength="255" />
+          <Property Name="Estimate" Type="real" />
+          <Property Name="AreaID" Type="int" Nullable="false" />
+          <Property Name="IterationID" Type="int" Nullable="false" />
+          <Property Name="Priority" Type="real" />
+          <Property Name="SequenceNumber" Type="float" />
+          <Property Name="IsTriaged" Type="bit" Nullable="false" />
+          <Property Name="IsBlocking" Type="bit" Nullable="false" />
+          <Property Name="IsSyncable" Type="bit" Nullable="false" />
+          <Property Name="DescriptionRichText" Type="nvarchar(max)" />
+          <Property Name="DescriptionPlainText" Type="nvarchar(max)" />
+          <Property Name="ResolutionRichText" Type="nvarchar(max)" />
+          <Property Name="ResolutionPlainText" Type="nvarchar(max)" />
+          <Property Name="BenefitRichText" Type="nvarchar(max)" />
+          <Property Name="BenefitPlainText" Type="nvarchar(max)" />
+          <Property Name="StepsToReproduceRichText" Type="nvarchar(max)" />
+          <Property Name="StepsToReproducePlainText" Type="nvarchar(max)" />
+          <Property Name="Probability" Type="nvarchar" MaxLength="255" />
+          <Property Name="CreatedBy" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="CreatedDateUtc" Type="datetime" Nullable="false" />
+          <Property Name="CreatedSystemID" Type="int" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="LastModifiedDateUtc" Type="datetime" Nullable="false" />
+          <Property Name="LastModifiedSystemID" Type="int" Nullable="false" />
+          <Property Name="VersionNumber" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Story">
+          <Key>
+            <PropertyRef Name="StoryID" />
+          </Key>
+          <Property Name="StoryID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="ProjectID" Type="int" Nullable="false" />
+          <Property Name="Points" Type="real" />
+          <Property Name="Status" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Complexity" Type="varchar" MaxLength="255" />
+          <Property Name="Maturity" Type="varchar" MaxLength="255" />
+          <Property Name="Certainty" Type="varchar" MaxLength="255" />
+          <Property Name="AreaID" Type="int" Nullable="false" />
+          <Property Name="PriorityID" Type="int" />
+          <Property Name="IterationID" Type="int" Nullable="false" />
+          <Property Name="PriorityClassification" Type="varchar" MaxLength="255" />
+          <Property Name="ValueClassification" Type="varchar" MaxLength="255" />
+          <Property Name="AssignedTo" Type="varchar" MaxLength="100" />
+          <Property Name="AssignedToUserID" Type="int" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="IsSyncable" Type="bit" Nullable="false" />
+          <Property Name="IdeaID" Type="int" />
+          <Property Name="CreatedBy" Type="varchar" Nullable="false" MaxLength="128" />
+          <Property Name="CreatedDateUtc" Type="datetime" Nullable="false" />
+          <Property Name="CreatedSystemID" Type="int" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="varchar" Nullable="false" MaxLength="128" />
+          <Property Name="LastModifiedDateUtc" Type="datetime" Nullable="false" />
+          <Property Name="LastModifiedSystemID" Type="int" Nullable="false" />
+          <Property Name="VersionNumber" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Domain" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="IsEnabled" Type="bit" Nullable="false" />
+          <Property Name="Picture" Type="image" />
+          <Property Name="PictureContentType" Type="nvarchar" MaxLength="256" />
+          <Property Name="DeletionDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" Nullable="false" MaxLength="128" />
+          <Property Name="CreatedDateUtc" Type="datetime" Nullable="false" />
+          <Property Name="CreatedSystemID" Type="int" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="varchar" Nullable="false" MaxLength="128" />
+          <Property Name="LastModifiedDateUtc" Type="datetime" Nullable="false" />
+          <Property Name="LastModifiedSystemID" Type="int" Nullable="false" />
+          <Property Name="VersionNumber" Type="bigint" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Problem_Area">
+          <End Role="Area" Type="TeamPulseModel.Store.Area" Multiplicity="1" />
+          <End Role="Problem" Type="TeamPulseModel.Store.Problem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="AreaID" />
+            </Principal>
+            <Dependent Role="Problem">
+              <PropertyRef Name="AreaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Problem_Iteration">
+          <End Role="Iteration" Type="TeamPulseModel.Store.Iteration" Multiplicity="1" />
+          <End Role="Problem" Type="TeamPulseModel.Store.Problem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Iteration">
+              <PropertyRef Name="IterationID" />
+            </Principal>
+            <Dependent Role="Problem">
+              <PropertyRef Name="IterationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Problem_User">
+          <End Role="User" Type="TeamPulseModel.Store.User" Multiplicity="0..1" />
+          <End Role="Problem" Type="TeamPulseModel.Store.Problem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Problem">
+              <PropertyRef Name="AssignedToUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Story_Area">
+          <End Role="Area" Type="TeamPulseModel.Store.Area" Multiplicity="1" />
+          <End Role="Story" Type="TeamPulseModel.Store.Story" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="AreaID" />
+            </Principal>
+            <Dependent Role="Story">
+              <PropertyRef Name="AreaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Story_Iteration">
+          <End Role="Iteration" Type="TeamPulseModel.Store.Iteration" Multiplicity="1" />
+          <End Role="Story" Type="TeamPulseModel.Store.Story" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Iteration">
+              <PropertyRef Name="IterationID" />
+            </Principal>
+            <Dependent Role="Story">
+              <PropertyRef Name="IterationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Story_User">
+          <End Role="User" Type="TeamPulseModel.Store.User" Multiplicity="0..1" />
+          <End Role="Story" Type="TeamPulseModel.Store.Story" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Story">
+              <PropertyRef Name="AssignedToUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TeamPulseModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="TeamPulseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Area" EntityType="TeamPulseModel.Area" />
+          <EntitySet Name="Audit" EntityType="TeamPulseModel.Audit" />
+          <EntitySet Name="Iteration" EntityType="TeamPulseModel.Iteration" />
+          <EntitySet Name="Problem" EntityType="TeamPulseModel.Problem" />
+          <EntitySet Name="Story" EntityType="TeamPulseModel.Story" />
+          <EntitySet Name="User" EntityType="TeamPulseModel.User" />
+          <AssociationSet Name="FK_Problem_Area" Association="TeamPulseModel.FK_Problem_Area">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="Problem" EntitySet="Problem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Story_Area" Association="TeamPulseModel.FK_Story_Area">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="Story" EntitySet="Story" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Problem_Iteration" Association="TeamPulseModel.FK_Problem_Iteration">
+            <End Role="Iteration" EntitySet="Iteration" />
+            <End Role="Problem" EntitySet="Problem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Story_Iteration" Association="TeamPulseModel.FK_Story_Iteration">
+            <End Role="Iteration" EntitySet="Iteration" />
+            <End Role="Story" EntitySet="Story" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Problem_User" Association="TeamPulseModel.FK_Problem_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Problem" EntitySet="Problem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Story_User" Association="TeamPulseModel.FK_Story_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Story" EntitySet="Story" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Area">
+          <Key>
+            <PropertyRef Name="AreaID" />
+          </Key>
+          <Property Name="AreaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="550" Unicode="false" FixedLength="false" />
+          <Property Name="ParentID" Type="Int32" Nullable="false" />
+          <Property Name="Sequence" Type="Int32" Nullable="false" />
+          <Property Name="SourceID" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="CreatedDateUtc" Type="DateTime" Nullable="false" />
+          <Property Name="CreatedSystemID" Type="Int32" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="LastModifiedDateUtc" Type="DateTime" Nullable="false" />
+          <Property Name="LastModifiedSystemID" Type="Int32" Nullable="false" />
+          <Property Name="VersionNumber" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Problem" Relationship="TeamPulseModel.FK_Problem_Area" FromRole="Area" ToRole="Problem" />
+          <NavigationProperty Name="Story" Relationship="TeamPulseModel.FK_Story_Area" FromRole="Area" ToRole="Story" />
+        </EntityType>
+        <EntityType Name="Audit">
+          <Key>
+            <PropertyRef Name="AuditID" />
+          </Key>
+          <Property Name="AuditID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChangeTypeID" Type="Int32" Nullable="false" />
+          <Property Name="TableName" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="ProjectID" Type="Int32" />
+          <Property Name="PrimaryKeyField" Type="String" Nullable="false" MaxLength="1000" Unicode="false" FixedLength="false" />
+          <Property Name="PrimaryKeyValue" Type="Int32" Nullable="false" />
+          <Property Name="FieldName" Type="String" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="OldValue" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="NewValue" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="RevisionStatus" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedBy" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="ModifiedDateUtc" Type="DateTime" Nullable="false" />
+          <Property Name="ModifiedSystemID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Iteration">
+          <Key>
+            <PropertyRef Name="IterationID" />
+          </Key>
+          <Property Name="IterationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectID" Type="Int32" Nullable="false" />
+          <Property Name="TimeLineID" Type="Int32" Nullable="false" />
+          <Property Name="CapacityMinimum" Type="Single" />
+          <Property Name="CapacityMaximum" Type="Single" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" />
+          <Property Name="PredecessorID" Type="Int32" />
+          <Property Name="ParentID" Type="Int32" Nullable="false" />
+          <Property Name="Level" Type="Int32" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="SourceId" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
+          <Property Name="Sequence" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="CreatedDateUtc" Type="DateTime" Nullable="false" />
+          <Property Name="CreatedSystemID" Type="Int32" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="LastModifiedDateUtc" Type="DateTime" Nullable="false" />
+          <Property Name="LastModifiedSystemID" Type="Int32" Nullable="false" />
+          <Property Name="VersionNumber" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Problem" Relationship="TeamPulseModel.FK_Problem_Iteration" FromRole="Iteration" ToRole="Problem" />
+          <NavigationProperty Name="Story" Relationship="TeamPulseModel.FK_Story_Iteration" FromRole="Iteration" ToRole="Story" />
+        </EntityType>
+        <EntityType Name="Problem">
+          <Key>
+            <PropertyRef Name="ProblemID" />
+          </Key>
+          <Property Name="ProblemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectID" Type="Int32" Nullable="false" />
+          <Property Name="ProblemType" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="AssignedTo" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="AssignedToUserID" Type="Int32" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Severity" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Estimate" Type="Single" />
+          <Property Name="AreaID" Type="Int32" Nullable="false" />
+          <Property Name="IterationID" Type="Int32" Nullable="false" />
+          <Property Name="Priority" Type="Single" />
+          <Property Name="SequenceNumber" Type="Double" />
+          <Property Name="IsTriaged" Type="Boolean" Nullable="false" />
+          <Property Name="IsBlocking" Type="Boolean" Nullable="false" />
+          <Property Name="IsSyncable" Type="Boolean" Nullable="false" />
+          <Property Name="DescriptionRichText" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="DescriptionPlainText" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ResolutionRichText" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ResolutionPlainText" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="BenefitRichText" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="BenefitPlainText" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="StepsToReproduceRichText" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="StepsToReproducePlainText" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Probability" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="CreatedDateUtc" Type="DateTime" Nullable="false" />
+          <Property Name="CreatedSystemID" Type="Int32" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedDateUtc" Type="DateTime" Nullable="false" />
+          <Property Name="LastModifiedSystemID" Type="Int32" Nullable="false" />
+          <Property Name="VersionNumber" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Area" Relationship="TeamPulseModel.FK_Problem_Area" FromRole="Problem" ToRole="Area" />
+          <NavigationProperty Name="Iteration" Relationship="TeamPulseModel.FK_Problem_Iteration" FromRole="Problem" ToRole="Iteration" />
+          <NavigationProperty Name="User" Relationship="TeamPulseModel.FK_Problem_User" FromRole="Problem" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Story">
+          <Key>
+            <PropertyRef Name="StoryID" />
+          </Key>
+          <Property Name="StoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="ProjectID" Type="Int32" Nullable="false" />
+          <Property Name="Points" Type="Single" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Complexity" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Maturity" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Certainty" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="AreaID" Type="Int32" Nullable="false" />
+          <Property Name="PriorityID" Type="Int32" />
+          <Property Name="IterationID" Type="Int32" Nullable="false" />
+          <Property Name="PriorityClassification" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="ValueClassification" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="AssignedTo" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="AssignedToUserID" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="IsSyncable" Type="Boolean" Nullable="false" />
+          <Property Name="IdeaID" Type="Int32" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="CreatedDateUtc" Type="DateTime" Nullable="false" />
+          <Property Name="CreatedSystemID" Type="Int32" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="LastModifiedDateUtc" Type="DateTime" Nullable="false" />
+          <Property Name="LastModifiedSystemID" Type="Int32" Nullable="false" />
+          <Property Name="VersionNumber" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Area" Relationship="TeamPulseModel.FK_Story_Area" FromRole="Story" ToRole="Area" />
+          <NavigationProperty Name="Iteration" Relationship="TeamPulseModel.FK_Story_Iteration" FromRole="Story" ToRole="Iteration" />
+          <NavigationProperty Name="User" Relationship="TeamPulseModel.FK_Story_User" FromRole="Story" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Domain" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="IsEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="PictureContentType" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="DeletionDate" Type="DateTime" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="CreatedDateUtc" Type="DateTime" Nullable="false" />
+          <Property Name="CreatedSystemID" Type="Int32" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="LastModifiedDateUtc" Type="DateTime" Nullable="false" />
+          <Property Name="LastModifiedSystemID" Type="Int32" Nullable="false" />
+          <Property Name="VersionNumber" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Problem" Relationship="TeamPulseModel.FK_Problem_User" FromRole="User" ToRole="Problem" />
+          <NavigationProperty Name="Story" Relationship="TeamPulseModel.FK_Story_User" FromRole="User" ToRole="Story" />
+        </EntityType>
+        <Association Name="FK_Problem_Area">
+          <End Role="Area" Type="TeamPulseModel.Area" Multiplicity="1" />
+          <End Role="Problem" Type="TeamPulseModel.Problem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="AreaID" />
+            </Principal>
+            <Dependent Role="Problem">
+              <PropertyRef Name="AreaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Story_Area">
+          <End Role="Area" Type="TeamPulseModel.Area" Multiplicity="1" />
+          <End Role="Story" Type="TeamPulseModel.Story" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="AreaID" />
+            </Principal>
+            <Dependent Role="Story">
+              <PropertyRef Name="AreaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Problem_Iteration">
+          <End Role="Iteration" Type="TeamPulseModel.Iteration" Multiplicity="1" />
+          <End Role="Problem" Type="TeamPulseModel.Problem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Iteration">
+              <PropertyRef Name="IterationID" />
+            </Principal>
+            <Dependent Role="Problem">
+              <PropertyRef Name="IterationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Story_Iteration">
+          <End Role="Iteration" Type="TeamPulseModel.Iteration" Multiplicity="1" />
+          <End Role="Story" Type="TeamPulseModel.Story" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Iteration">
+              <PropertyRef Name="IterationID" />
+            </Principal>
+            <Dependent Role="Story">
+              <PropertyRef Name="IterationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Problem_User">
+          <End Role="User" Type="TeamPulseModel.User" Multiplicity="0..1" />
+          <End Role="Problem" Type="TeamPulseModel.Problem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Problem">
+              <PropertyRef Name="AssignedToUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Story_User">
+          <End Role="User" Type="TeamPulseModel.User" Multiplicity="0..1" />
+          <End Role="Story" Type="TeamPulseModel.Story" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Story">
+              <PropertyRef Name="AssignedToUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TeamPulseModelStoreContainer" CdmEntityContainer="TeamPulseEntities">
+          <EntitySetMapping Name="Area"><EntityTypeMapping TypeName="TeamPulseModel.Area"><MappingFragment StoreEntitySet="Area">
+            <ScalarProperty Name="AreaID" ColumnName="AreaID" />
+            <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+            <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+            <ScalarProperty Name="SourceID" ColumnName="SourceID" />
+            <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+            <ScalarProperty Name="CreatedDateUtc" ColumnName="CreatedDateUtc" />
+            <ScalarProperty Name="CreatedSystemID" ColumnName="CreatedSystemID" />
+            <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+            <ScalarProperty Name="LastModifiedDateUtc" ColumnName="LastModifiedDateUtc" />
+            <ScalarProperty Name="LastModifiedSystemID" ColumnName="LastModifiedSystemID" />
+            <ScalarProperty Name="VersionNumber" ColumnName="VersionNumber" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Audit"><EntityTypeMapping TypeName="TeamPulseModel.Audit"><MappingFragment StoreEntitySet="Audit">
+            <ScalarProperty Name="AuditID" ColumnName="AuditID" />
+            <ScalarProperty Name="ChangeTypeID" ColumnName="ChangeTypeID" />
+            <ScalarProperty Name="TableName" ColumnName="TableName" />
+            <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+            <ScalarProperty Name="PrimaryKeyField" ColumnName="PrimaryKeyField" />
+            <ScalarProperty Name="PrimaryKeyValue" ColumnName="PrimaryKeyValue" />
+            <ScalarProperty Name="FieldName" ColumnName="FieldName" />
+            <ScalarProperty Name="OldValue" ColumnName="OldValue" />
+            <ScalarProperty Name="NewValue" ColumnName="NewValue" />
+            <ScalarProperty Name="RevisionStatus" ColumnName="RevisionStatus" />
+            <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+            <ScalarProperty Name="ModifiedDateUtc" ColumnName="ModifiedDateUtc" />
+            <ScalarProperty Name="ModifiedSystemID" ColumnName="ModifiedSystemID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Iteration"><EntityTypeMapping TypeName="TeamPulseModel.Iteration"><MappingFragment StoreEntitySet="Iteration">
+            <ScalarProperty Name="IterationID" ColumnName="IterationID" />
+            <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+            <ScalarProperty Name="TimeLineID" ColumnName="TimeLineID" />
+            <ScalarProperty Name="CapacityMinimum" ColumnName="CapacityMinimum" />
+            <ScalarProperty Name="CapacityMaximum" ColumnName="CapacityMaximum" />
+            <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+            <ScalarProperty Name="PredecessorID" ColumnName="PredecessorID" />
+            <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+            <ScalarProperty Name="Level" ColumnName="Level" />
+            <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="SourceId" ColumnName="SourceId" />
+            <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+            <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+            <ScalarProperty Name="CreatedDateUtc" ColumnName="CreatedDateUtc" />
+            <ScalarProperty Name="CreatedSystemID" ColumnName="CreatedSystemID" />
+            <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+            <ScalarProperty Name="LastModifiedDateUtc" ColumnName="LastModifiedDateUtc" />
+            <ScalarProperty Name="LastModifiedSystemID" ColumnName="LastModifiedSystemID" />
+            <ScalarProperty Name="VersionNumber" ColumnName="VersionNumber" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Problem"><EntityTypeMapping TypeName="TeamPulseModel.Problem"><MappingFragment StoreEntitySet="Problem">
+            <ScalarProperty Name="ProblemID" ColumnName="ProblemID" />
+            <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+            <ScalarProperty Name="ProblemType" ColumnName="ProblemType" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="AssignedTo" ColumnName="AssignedTo" />
+            <ScalarProperty Name="AssignedToUserID" ColumnName="AssignedToUserID" />
+            <ScalarProperty Name="Status" ColumnName="Status" />
+            <ScalarProperty Name="Severity" ColumnName="Severity" />
+            <ScalarProperty Name="Estimate" ColumnName="Estimate" />
+            <ScalarProperty Name="AreaID" ColumnName="AreaID" />
+            <ScalarProperty Name="IterationID" ColumnName="IterationID" />
+            <ScalarProperty Name="Priority" ColumnName="Priority" />
+            <ScalarProperty Name="SequenceNumber" ColumnName="SequenceNumber" />
+            <ScalarProperty Name="IsTriaged" ColumnName="IsTriaged" />
+            <ScalarProperty Name="IsBlocking" ColumnName="IsBlocking" />
+            <ScalarProperty Name="IsSyncable" ColumnName="IsSyncable" />
+            <ScalarProperty Name="DescriptionRichText" ColumnName="DescriptionRichText" />
+            <ScalarProperty Name="DescriptionPlainText" ColumnName="DescriptionPlainText" />
+            <ScalarProperty Name="ResolutionRichText" ColumnName="ResolutionRichText" />
+            <ScalarProperty Name="ResolutionPlainText" ColumnName="ResolutionPlainText" />
+            <ScalarProperty Name="BenefitRichText" ColumnName="BenefitRichText" />
+            <ScalarProperty Name="BenefitPlainText" ColumnName="BenefitPlainText" />
+            <ScalarProperty Name="StepsToReproduceRichText" ColumnName="StepsToReproduceRichText" />
+            <ScalarProperty Name="StepsToReproducePlainText" ColumnName="StepsToReproducePlainText" />
+            <ScalarProperty Name="Probability" ColumnName="Probability" />
+            <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+            <ScalarProperty Name="CreatedDateUtc" ColumnName="CreatedDateUtc" />
+            <ScalarProperty Name="CreatedSystemID" ColumnName="CreatedSystemID" />
+            <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+            <ScalarProperty Name="LastModifiedDateUtc" ColumnName="LastModifiedDateUtc" />
+            <ScalarProperty Name="LastModifiedSystemID" ColumnName="LastModifiedSystemID" />
+            <ScalarProperty Name="VersionNumber" ColumnName="VersionNumber" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Story"><EntityTypeMapping TypeName="TeamPulseModel.Story"><MappingFragment StoreEntitySet="Story">
+            <ScalarProperty Name="StoryID" ColumnName="StoryID" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+            <ScalarProperty Name="Points" ColumnName="Points" />
+            <ScalarProperty Name="Status" ColumnName="Status" />
+            <ScalarProperty Name="Complexity" ColumnName="Complexity" />
+            <ScalarProperty Name="Maturity" ColumnName="Maturity" />
+            <ScalarProperty Name="Certainty" ColumnName="Certainty" />
+            <ScalarProperty Name="AreaID" ColumnName="AreaID" />
+            <ScalarProperty Name="PriorityID" ColumnName="PriorityID" />
+            <ScalarProperty Name="IterationID" ColumnName="IterationID" />
+            <ScalarProperty Name="PriorityClassification" ColumnName="PriorityClassification" />
+            <ScalarProperty Name="ValueClassification" ColumnName="ValueClassification" />
+            <ScalarProperty Name="AssignedTo" ColumnName="AssignedTo" />
+            <ScalarProperty Name="AssignedToUserID" ColumnName="AssignedToUserID" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="IsSyncable" ColumnName="IsSyncable" />
+            <ScalarProperty Name="IdeaID" ColumnName="IdeaID" />
+            <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+            <ScalarProperty Name="CreatedDateUtc" ColumnName="CreatedDateUtc" />
+            <ScalarProperty Name="CreatedSystemID" ColumnName="CreatedSystemID" />
+            <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+            <ScalarProperty Name="LastModifiedDateUtc" ColumnName="LastModifiedDateUtc" />
+            <ScalarProperty Name="LastModifiedSystemID" ColumnName="LastModifiedSystemID" />
+            <ScalarProperty Name="VersionNumber" ColumnName="VersionNumber" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="User"><EntityTypeMapping TypeName="TeamPulseModel.User"><MappingFragment StoreEntitySet="User">
+            <ScalarProperty Name="UserID" ColumnName="UserID" />
+            <ScalarProperty Name="Domain" ColumnName="Domain" />
+            <ScalarProperty Name="Username" ColumnName="Username" />
+            <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+            <ScalarProperty Name="LastName" ColumnName="LastName" />
+            <ScalarProperty Name="Email" ColumnName="Email" />
+            <ScalarProperty Name="IsEnabled" ColumnName="IsEnabled" />
+            <ScalarProperty Name="Picture" ColumnName="Picture" />
+            <ScalarProperty Name="PictureContentType" ColumnName="PictureContentType" />
+            <ScalarProperty Name="DeletionDate" ColumnName="DeletionDate" />
+            <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+            <ScalarProperty Name="CreatedDateUtc" ColumnName="CreatedDateUtc" />
+            <ScalarProperty Name="CreatedSystemID" ColumnName="CreatedSystemID" />
+            <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+            <ScalarProperty Name="LastModifiedDateUtc" ColumnName="LastModifiedDateUtc" />
+            <ScalarProperty Name="LastModifiedSystemID" ColumnName="LastModifiedSystemID" />
+            <ScalarProperty Name="VersionNumber" ColumnName="VersionNumber" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Teampulse">
+        <EntityTypeShape EntityType="TeamPulseModel.Area" Width="1.5" PointX="5.75" PointY="5.625" Height="3.9033007812499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeamPulseModel.Audit" Width="1.5" PointX="0.5" PointY="0.5" Height="3.5186979166666656" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeamPulseModel.Iteration" Width="1.5" PointX="4" PointY="8.875" Height="5.2494108072916656" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeamPulseModel.Problem" Width="1.5" PointX="3.125" PointY="0.5" Height="7.7493294270833335" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeamPulseModel.Story" Width="1.625" PointX="9.375" PointY="5.25" Height="5.8263151041666656" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeamPulseModel.User" Width="1.5" PointX="5.75" PointY="0.5" Height="4.6725065104166656" IsExpanded="true" />
+        <AssociationConnector Association="TeamPulseModel.FK_Problem_Area" ManuallyRouted="false">
+          <ConnectorPoint PointX="5.75" PointY="6.9371647135416667" />
+          <ConnectorPoint PointX="4.625" PointY="6.9371647135416667" />
+        </AssociationConnector>
+        <AssociationConnector Association="TeamPulseModel.FK_Story_Area" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.25" PointY="7.576650390625" />
+          <ConnectorPoint PointX="9.375" PointY="7.576650390625" />
+        </AssociationConnector>
+        <AssociationConnector Association="TeamPulseModel.FK_Problem_Iteration" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.3125" PointY="8.875" />
+          <ConnectorPoint PointX="4.3125" PointY="8.2493294270833335" />
+        </AssociationConnector>
+        <AssociationConnector Association="TeamPulseModel.FK_Story_Iteration" ManuallyRouted="false">
+          <ConnectorPoint PointX="5.5" PointY="10.653579845610118" />
+          <ConnectorPoint PointX="5.875" PointY="10.653579845610118" />
+          <ConnectorPoint PointX="5.875" PointY="10.65299371092477" />
+          <ConnectorPoint PointX="9.375" PointY="10.65299371092477" />
+        </AssociationConnector>
+        <AssociationConnector Association="TeamPulseModel.FK_Problem_User" ManuallyRouted="false">
+          <ConnectorPoint PointX="5.75" PointY="2.8362532552083328" />
+          <ConnectorPoint PointX="4.625" PointY="2.8362532552083328" />
+        </AssociationConnector>
+        <AssociationConnector Association="TeamPulseModel.FK_Story_User" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.25" PointY="3.1934501302083333" />
+          <ConnectorPoint PointX="10.1875" PointY="3.1934501302083333" />
+          <ConnectorPoint PointX="10.1875" PointY="5.25" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

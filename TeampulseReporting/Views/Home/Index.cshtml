@@ -1,0 +1,16 @@
+﻿@model TeampulseReporting.Models.IndexViewModel
+
+@{
+    View.Title = "Iterations";
+    Layout = "~/Views/Shared/_Blueprint.cshtml";
+}
+
+    <h1>Iterations</h1>
+	
+    <ul>
+    @foreach (var it in Model.Iterations){
+       <li>
+            @Html.ActionLink(it.Name,"Index", "DoneItems",new{id = it.IterationID},new {title="StartDate : " + it.StartDate.ToShortDateString() + " EndDate :" + it.StartDate.ToShortDateString()})
+       </li>
+    }
+    </ul>
