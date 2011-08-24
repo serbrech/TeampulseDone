@@ -68,6 +68,6 @@ _ReSharper*/
 # 
 #Files with DB password
 #
-*.Debug.config
+
 
 # End of File
