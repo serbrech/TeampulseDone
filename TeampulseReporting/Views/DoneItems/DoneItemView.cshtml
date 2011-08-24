@@ -1,0 +1,28 @@
+﻿@model IEnumerable<TeampulseReporting.Models.DoneItem>
+<table>
+    <thead>
+        <th></th>
+        <th>Name</th>
+        <th>Date</th>
+        <th>User</th>
+        <th>Application Area</th>
+    </thead>
+    <tbody>
+    @foreach (var donePb in Model)
+    {
+        <tr>
+            <td><a class="description-link" href="#">details</a></td>
+            <td>@donePb.Name</td>
+            <td>@donePb.DoneDate.ToShortDateString()</td>
+            <td>@donePb.DoneBy</td>
+            <td>@donePb.AreaName</td>
+        </tr>
+        <tr></tr>
+        <tr class="description" hidden="hidden">
+            <td></td>
+            <td colspan="4">@donePb.Description</td>
+        </tr>
+    }
+    </tbody>
+</table>
+

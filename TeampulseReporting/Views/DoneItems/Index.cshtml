@@ -7,19 +7,8 @@
 
 <h2>Done Items in iteration</h2>
 <h3>Problems</h3>
-<table>
-	<thead>
-		<th>Name</th>
-		<th>Date</th>
-		<th>User</th>
-	</thead>
-	<tbody>
-	@foreach (var donePb in Model.DoneProblems){
-		<tr>
-			<td>@donePb.ProblemName</td>
-			<td>@donePb.DoneDate.ToShortDateString()</td>
-			<td>@donePb.DoneBy</td>
-		</tr>
-	}
-	</tbody>
-</table>
+@Html.Partial("DoneItemView",Model.DoneProblems)
+
+<h3>Stories</h3>
+@Html.Partial("DoneItemView",Model.DoneStories)
+

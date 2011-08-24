@@ -26,3 +26,8 @@
 {
 	display: none;
 }
+
+tr.description {
+    background-color: #F9F3E5;
+    
+}
