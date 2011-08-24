@@ -64,5 +64,10 @@ _ReSharper*/
 # Microsoft Office Temp Files
 #
 ~$*
- 
+
+# 
+#Files with DB password
+#
+*.Debug.config
+
 # End of File
