@@ -118,6 +118,7 @@
     <Content Include="Content\blueprint\_examples\valid.png" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\js\done-details.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

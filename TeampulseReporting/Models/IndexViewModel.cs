@@ -14,5 +14,11 @@ namespace TeampulseReporting.Models
         {
             Iterations = iterations;
         }
+
+        public string GetIterationDisplayName(Iteration it)
+        {
+            return "StartDate: " + it.StartDate.ToShortDateString() + " EndDate :" + it.StartDate.ToShortDateString();
+        }
+        
     }
 }
