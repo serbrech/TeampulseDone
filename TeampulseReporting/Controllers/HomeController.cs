@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TeampulseReporting.Data;
 using TeampulseReporting.Models;
 
 namespace TeampulseReporting.Controllers
@@ -12,8 +13,9 @@ namespace TeampulseReporting.Controllers
     {
         public ActionResult Index()
         {
+
             var iterations = (from i in Context.Iteration
-                              orderby i.IterationID descending 
+                              orderby i.StartDate descending 
                               select i).ToList();
             return View(new IndexViewModel(iterations));
         }

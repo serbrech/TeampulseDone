@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Blueprint.cshtml";
 }
 
-<h2>Done Items in iteration</h2>
+<h2>Done Items in iteration @Model.IterationName</h2>
 <h3>Problems</h3>
 @Html.Partial("DoneItemView",Model.DoneProblems)
 

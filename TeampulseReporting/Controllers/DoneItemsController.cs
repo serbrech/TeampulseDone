@@ -21,6 +21,7 @@ namespace TeampulseReporting.Controllers
 
             var viewModel = new DoneItemsViewModel()
                 {
+                    IterationName = iteration.Name,
                     DoneProblems = doneProblems.ToList(),
                     DoneStories = doneStories.ToList()
                 };

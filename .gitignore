@@ -42,6 +42,7 @@ obj/
 [Bb]in
 [Dd]ebug*/
 [Rr]elease*/
+*.[Pp]ublish.xml
  
 #
 #Tooling

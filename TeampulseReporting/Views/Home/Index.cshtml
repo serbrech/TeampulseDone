@@ -5,11 +5,21 @@
 }
 <h1>
     Iterations</h1>
-<ul>
-@foreach (var it in Model.Iterations){
-    <li>@Html.ActionLink(it.Name,"Index", 
-                        "DoneItems",new{id = it.IterationID},
-                        new {title=Model.GetIterationDisplayName(it)})
-    </li>
-}
-</ul>
+<table>
+<thead>
+    <th>StartDate</th>
+    <th>EndDate</th>
+    <th>Name</th>
+</thead>
+<tbody>
+    @foreach (var it in Model.Iterations){
+    <tr>
+    <td>@it.StartDate.ToShortDateString()</td>
+    <td>@it.EndDate.ToShortDateString()</td>
+    <td>@Html.ActionLink(it.Name,"Index", 
+                            "DoneItems",new{id = it.IterationID},
+                            new {title=Model.GetIterationDisplayName(it)})</td>
+    </tr>
+    }
+    </tbody>
+</table>
