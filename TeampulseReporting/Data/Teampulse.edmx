@@ -365,17 +365,17 @@
           <Key>
             <PropertyRef Name="ProblemID" />
           </Key>
-          <Property Name="ProblemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProblemID" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
           <Property Name="ProjectID" Type="Int32" Nullable="false" />
           <Property Name="ProblemType" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" Type="String" />
           <Property Name="AssignedTo" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
           <Property Name="AssignedToUserID" Type="Int32" />
-          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Status" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
           <Property Name="Severity" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
           <Property Name="Estimate" Type="Single" />
           <Property Name="AreaID" Type="Int32" Nullable="false" />
-          <Property Name="IterationID" Type="Int32" Nullable="false" />
+          <Property Name="IterationID" Nullable="false" Type="Int32" />
           <Property Name="Priority" Type="Single" />
           <Property Name="SequenceNumber" Type="Double" />
           <Property Name="IsTriaged" Type="Boolean" Nullable="false" />
@@ -391,7 +391,7 @@
           <Property Name="StepsToReproducePlainText" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="Probability" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
           <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
-          <Property Name="CreatedDateUtc" Type="DateTime" Nullable="false" />
+          <Property Name="CreatedDateUtc" Nullable="false" Type="DateTime" />
           <Property Name="CreatedSystemID" Type="Int32" Nullable="false" />
           <Property Name="LastModifiedBy" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
           <Property Name="LastModifiedDateUtc" Type="DateTime" Nullable="false" />
@@ -405,26 +405,26 @@
           <Key>
             <PropertyRef Name="StoryID" />
           </Key>
-          <Property Name="StoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="ProjectID" Type="Int32" Nullable="false" />
+          <Property Name="StoryID" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="Name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="ProjectID" Nullable="false" Type="Int32" />
           <Property Name="Points" Type="Single" />
-          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="Complexity" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="Maturity" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="Certainty" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="AreaID" Type="Int32" Nullable="false" />
+          <Property Name="Status" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="Complexity" MaxLength="255" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="Maturity" MaxLength="255" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="Certainty" MaxLength="255" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="AreaID" Nullable="false" Type="Int32" />
           <Property Name="PriorityID" Type="Int32" />
-          <Property Name="IterationID" Type="Int32" Nullable="false" />
-          <Property Name="PriorityClassification" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="ValueClassification" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="AssignedTo" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="IterationID" Nullable="false" Type="Int32" />
+          <Property Name="PriorityClassification" MaxLength="255" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="ValueClassification" MaxLength="255" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="AssignedTo" MaxLength="100" FixedLength="false" Unicode="false" Type="String" />
           <Property Name="AssignedToUserID" Type="Int32" />
-          <Property Name="Description" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Description" MaxLength="Max" FixedLength="false" Unicode="false" Type="String" />
           <Property Name="IsSyncable" Type="Boolean" Nullable="false" />
           <Property Name="IdeaID" Type="Int32" />
           <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
-          <Property Name="CreatedDateUtc" Type="DateTime" Nullable="false" />
+          <Property Name="CreatedDateUtc" Nullable="false" Type="DateTime" />
           <Property Name="CreatedSystemID" Type="Int32" Nullable="false" />
           <Property Name="LastModifiedBy" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
           <Property Name="LastModifiedDateUtc" Type="DateTime" Nullable="false" />

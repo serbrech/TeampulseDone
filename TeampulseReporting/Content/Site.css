@@ -32,3 +32,16 @@ tr.description {
     display: none;
     
 }
+
+.back-link {
+    font-size: 1.2em;
+}
+
+.container {
+    margin-top: 2em;
+}
+
+.ui-datepicker-calendar table{
+  margin: 0; }
+.ui-datepicker-calendar th , .ui-datepicker-calendar td {
+  padding: 0; text-align: center; }

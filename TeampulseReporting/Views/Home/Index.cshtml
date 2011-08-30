@@ -1,10 +1,23 @@
-﻿@model TeampulseReporting.Models.IndexViewModel 
+﻿@using TeampulseReporting.Helpers;
+@model TeampulseReporting.Models.IndexViewModel 
 @{ 
     View.Title = "Iterations"; 
     Layout= "~/Views/Shared/_Blueprint.cshtml"; 
 }
-<h1>
-    Iterations</h1>
+<h1>Iterations</h1>
+@using(Html.BeginForm("Date","DoneItems",FormMethod.Get))
+{
+    <fieldset>
+        @Html.Label("From date")
+        @Html.TextBox("fromDate",null, new{@class="datepicker"} )
+        @Html.Label("To date")
+        @Html.TextBox("toDate",null,  new{@class="datepicker"} )
+        @Html.Hidden("date-pattern", Html.ConvertDateFormat())
+        <div>
+            <button type="submit">View done items</button>
+        </div>
+    </fieldset>
+}
 <table>
 <thead>
     <th>StartDate</th>
