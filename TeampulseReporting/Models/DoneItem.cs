@@ -11,5 +11,7 @@ namespace TeampulseReporting.Models
         public string Name { get; set; }
         public float? Priority { get; set; }
         public string AreaName { get; set; }
+        public int TfsId { get; set; }
+        public int TeampulseId { get; set; }
     }
 }

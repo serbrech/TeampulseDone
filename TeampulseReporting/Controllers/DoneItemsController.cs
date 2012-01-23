@@ -39,7 +39,7 @@ namespace TeampulseReporting.Controllers
             return View("Index", viewModel);
         }
 
-        private IQueryable<DoneStory> GetDoneStoriesByDate(DateTime startDate, DateTime endDate)
+        private IEnumerable<DoneStory> GetDoneStoriesByDate(DateTime startDate, DateTime endDate)
         {
             var stories = from s in Context.Story.Include("Area")
                           where s.Status == "Done"
@@ -60,14 +60,16 @@ namespace TeampulseReporting.Controllers
                                       Priority = s.PriorityID,
                                       AreaName = s.Area.Name,
                                       Points = s.Points,
-                                      PriorityClassification = s.PriorityClassification
+                                      PriorityClassification = s.PriorityClassification,
+                                      TeampulseId = s.StoryID
                                   };
-            return doneStories;
+            return doneStories.AsEnumerable().Distinct(new DoneItemsComparer<DoneStory>());
         }
 
-        private IQueryable<DoneProblem> GetDoneProblemsByDate(DateTime startDate, DateTime endDate)
+        private IEnumerable<DoneProblem> GetDoneProblemsByDate(DateTime startDate, DateTime endDate)
         {
             var problems = from p in Context.Problem.Include("Area")
+                           //where p.CreatedSystemID
                            where p.Status == "Done"
                            select p;
             var problemAudits = GetTableAudit("Problem", startDate, endDate);
@@ -84,8 +86,9 @@ namespace TeampulseReporting.Controllers
                                        Description = p.DescriptionPlainText,
                                        Priority = p.Priority,
                                        AreaName = p.Area.Name,
+                                       TeampulseId = p.ProblemID
                                    };
-            return doneProblems;
+            return doneProblems.AsEnumerable().Distinct(new DoneItemsComparer<DoneProblem>());
         }
 
         private IQueryable<Audit> GetTableAudit(string tableName, DateTime startdate, DateTime endDate)
@@ -100,5 +103,17 @@ namespace TeampulseReporting.Controllers
         }
 
 
+    }
+
+    public class DoneItemsComparer<T> : IEqualityComparer<T> where T:DoneItem{
+        public bool Equals(T x, T y)
+        {
+            return x.TeampulseId == y.TeampulseId;
+        }
+
+        public int GetHashCode(T obj)
+        {
+            return obj.TeampulseId;
+        }
     }
 }

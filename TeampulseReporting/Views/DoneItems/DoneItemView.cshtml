@@ -3,6 +3,7 @@
 <table>
     <thead>
         <th></th>
+        <th>TeampulseId</th>	
         <th>Name</th>
         <th>Date</th>
         <th>User</th>
@@ -12,7 +13,8 @@
     @foreach (var donePb in Model)
     {
         <tr>
-            <td><a class="description-link" href="#">details</a></td>
+			<td><a class="description-link" href="#">details</a></td>
+            <td>@donePb.TeampulseId</td>
             <td>@donePb.Name</td>
             <td>@donePb.DoneDate.ToShortDateString()</td>
             <td>@donePb.DoneBy</td>
